@@ -49,6 +49,7 @@ function parseCSV(csvText: string): HealthRecord[] {
     const id = getVal('รหัสบุคคล', 0);
     if (!id || !id.startsWith('H')) continue;
 
+    const seq = parseInt(id.replace(/\D/g, ''), 10) || (records.length + 1);
     const date = getVal('วันที่คัดกรอง', 1);
     const area = getVal('พื้นที่', 2);
     const gender = getVal('เพศ', 3);
@@ -70,6 +71,7 @@ function parseCSV(csvText: string): HealthRecord[] {
     const month = getVal('เดือน', 19);
 
     records.push({
+      seq,
       id,
       date,
       area,

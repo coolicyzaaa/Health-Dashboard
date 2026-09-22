@@ -107,12 +107,13 @@ export default function App() {
         return false;
       }
 
-      // 6. Search query (ID, Area, etc.)
+      // 6. Search query (ลำดับ, รหัส, พื้นที่)
       if (filters.searchQuery.trim()) {
         const q = filters.searchQuery.toLowerCase().trim();
+        const matchSeq = r.seq.toString() === q || r.seq.toString().includes(q);
         const matchId = r.id.toLowerCase().includes(q);
         const matchArea = r.area.toLowerCase().includes(q);
-        return matchId || matchArea;
+        return matchSeq || matchId || matchArea;
       }
 
       return true;

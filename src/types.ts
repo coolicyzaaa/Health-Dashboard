@@ -1,5 +1,6 @@
 export interface HealthRecord {
-  id: string;                    // รหัสบุคคล เช่น H0001
+  seq: number;                   // ลำดับ เช่น 1, 2, 3...
+  id: string;                    // รหัสอ้างอิงเดิม เช่น H0001
   date: string;                  // วันที่คัดกรอง เช่น 3/1/2026
   area: string;                  // พื้นที่: เมือง, เหนือ, ใต้, ตะวันออก, ตะวันตก
   gender: 'ชาย' | 'หญิง' | string; // เพศ

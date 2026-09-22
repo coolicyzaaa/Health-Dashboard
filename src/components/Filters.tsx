@@ -180,17 +180,17 @@ export const Filters: React.FC<FiltersProps> = ({
               </select>
             </div>
 
-            {/* 6. ค้นหารหัสบุคคล */}
+            {/* 6. ค้นหาลำดับ */}
             <div className="space-y-1.5">
               <label className="flex items-center gap-1 text-xs font-semibold text-[#2E3A5A]">
                 <Search className="w-3.5 h-3.5 text-[#2E3A5A]/70" />
-                <span>ค้นหารหัสบุคคล</span>
+                <span>ค้นหาลำดับ</span>
               </label>
               <div className="relative">
                 <input
                   id="search-patient-id"
                   type="text"
-                  placeholder="เช่น H0001, H0012"
+                  placeholder="เช่น 1, 2, H0001"
                   value={filters.searchQuery}
                   onChange={(e) => onFilterChange({ searchQuery: e.target.value })}
                   className="w-full px-3.5 py-2 text-xs sm:text-sm rounded-xl bg-[#F7F4ED] border border-[#8FCBEA]/40 text-[#2E3A5A] placeholder-[#2E3A5A]/40 focus:outline-none focus:ring-2 focus:ring-[#8FCBEA] transition-all"

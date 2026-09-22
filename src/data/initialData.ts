@@ -1,6 +1,6 @@
 import { HealthRecord } from '../types';
 
-export const INITIAL_RECORDS: HealthRecord[] = [
+const RAW_RECORDS: Omit<HealthRecord, 'seq'>[] = [
   {
     id: "H0001",
     date: "3/1/2026",
@@ -662,3 +662,9 @@ export const INITIAL_RECORDS: HealthRecord[] = [
     month: "2026-03"
   }
 ];
+
+export const INITIAL_RECORDS: HealthRecord[] = RAW_RECORDS.map((r, idx) => ({
+  seq: parseInt(r.id.replace(/\D/g, ''), 10) || idx + 1,
+  ...r
+}));
+

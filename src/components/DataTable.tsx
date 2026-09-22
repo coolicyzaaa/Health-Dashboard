@@ -31,11 +31,12 @@ export const DataTable: React.FC<DataTableProps> = ({ records }) => {
         // Local table search
         if (tableSearch.trim()) {
           const q = tableSearch.toLowerCase().trim();
+          const matchSeq = r.seq.toString().includes(q);
           const matchId = r.id.toLowerCase().includes(q);
           const matchArea = r.area.toLowerCase().includes(q);
           const matchGender = r.gender.toLowerCase().includes(q);
           const matchAge = r.age.toString().includes(q);
-          return matchId || matchArea || matchGender || matchAge;
+          return matchSeq || matchId || matchArea || matchGender || matchAge;
         }
         return true;
       })
@@ -225,13 +226,13 @@ export const DataTable: React.FC<DataTableProps> = ({ records }) => {
           <table className="w-full text-left border-collapse text-xs sm:text-sm">
             <thead>
               <tr className="bg-[#F7F4ED] border-b border-[#8FCBEA]/20 text-[#2E3A5A] select-none">
-                {/* 1. FIXED COLUMN: รหัสบุคคล */}
+                {/* 1. FIXED COLUMN: ลำดับ */}
                 <th 
-                  onClick={() => handleSort('id')}
-                  className="sticky left-0 z-20 bg-[#F7F4ED] py-3.5 px-4 font-bold cursor-pointer hover:bg-[#BFE6FF]/30 transition-colors shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)] border-r border-[#8FCBEA]/20 whitespace-nowrap"
+                  onClick={() => handleSort('seq')}
+                  className="sticky left-0 z-20 bg-[#F7F4ED] py-3.5 px-3 sm:px-4 font-bold cursor-pointer hover:bg-[#BFE6FF]/30 transition-colors shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)] border-r border-[#8FCBEA]/20 whitespace-nowrap text-center"
                 >
-                  <div className="flex items-center gap-1">
-                    <span>รหัสบุคคล</span>
+                  <div className="flex items-center justify-center gap-1">
+                    <span>ลำดับ</span>
                     <ArrowUpDown className="w-3 h-3 text-[#2E3A5A]/50" />
                   </div>
                 </th>
@@ -239,7 +240,7 @@ export const DataTable: React.FC<DataTableProps> = ({ records }) => {
                 {/* 2. FIXED / PINNED COLUMN: ระดับความเสี่ยง (เด่นชัด ตามข้อกำหนด 4) */}
                 <th 
                   onClick={() => handleSort('riskScore')}
-                  className="sticky left-[95px] sm:left-[110px] z-20 bg-[#F7F4ED] py-3.5 px-4 font-bold cursor-pointer hover:bg-[#BFE6FF]/30 transition-colors shadow-[3px_0_8px_-2px_rgba(0,0,0,0.08)] border-r-2 border-[#8FCBEA]/40 whitespace-nowrap"
+                  className="sticky left-[65px] sm:left-[75px] z-20 bg-[#F7F4ED] py-3.5 px-4 font-bold cursor-pointer hover:bg-[#BFE6FF]/30 transition-colors shadow-[3px_0_8px_-2px_rgba(0,0,0,0.08)] border-r-2 border-[#8FCBEA]/40 whitespace-nowrap"
                 >
                   <div className="flex items-center gap-1.5 text-[#2E3A5A]">
                     <ShieldAlert className="w-4 h-4 text-[#E63968]" />
@@ -330,13 +331,15 @@ export const DataTable: React.FC<DataTableProps> = ({ records }) => {
                     key={row.id}
                     className={`hover:bg-[#BFE6FF]/15 transition-colors ${idx % 2 === 0 ? 'bg-white' : 'bg-[#F7F4ED]/40'}`}
                   >
-                    {/* 1. FIXED COLUMN: รหัสบุคคล */}
-                    <td className="sticky left-0 z-10 bg-inherit py-3 px-4 font-bold text-[#2E3A5A] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)] border-r border-[#8FCBEA]/20 whitespace-nowrap">
-                      {row.id}
+                    {/* 1. FIXED COLUMN: ลำดับ */}
+                    <td className="sticky left-0 z-10 bg-inherit py-3 px-3 sm:px-4 font-bold text-[#2E3A5A] text-center shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)] border-r border-[#8FCBEA]/20 whitespace-nowrap">
+                      <span className="inline-flex items-center justify-center min-w-[28px] h-6 px-1.5 rounded-lg bg-[#8FCBEA]/20 text-[#2E3A5A] text-xs font-bold">
+                        {row.seq}
+                      </span>
                     </td>
 
                     {/* 2. FIXED COLUMN: ระดับความเสี่ยง (เด่นชัด) */}
-                    <td className="sticky left-[95px] sm:left-[110px] z-10 bg-inherit py-3 px-4 shadow-[3px_0_8px_-2px_rgba(0,0,0,0.08)] border-r-2 border-[#8FCBEA]/40 whitespace-nowrap">
+                    <td className="sticky left-[65px] sm:left-[75px] z-10 bg-inherit py-3 px-4 shadow-[3px_0_8px_-2px_rgba(0,0,0,0.08)] border-r-2 border-[#8FCBEA]/40 whitespace-nowrap">
                       {getRiskBadge(row.riskLevel, row.riskScore)}
                     </td>
 
