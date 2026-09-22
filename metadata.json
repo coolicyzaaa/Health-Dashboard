@@ -1,0 +1,6 @@
+{
+  "name": "การคัดกรองความเสี่ยงด้านสุขภาพ",
+  "description": "ระบบแดชบอร์ดแสดงผลการคัดกรองความเสี่ยงด้านสุขภาพ พฤติกรรมสุขภาพ และสถิติวิเคราะห์เชิงลึก",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
